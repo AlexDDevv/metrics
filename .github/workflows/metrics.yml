@@ -1,0 +1,29 @@
+name: Metrics
+
+on:
+  # Régénère chaque jour à minuit
+  schedule:
+    - cron: "0 0 * * *"
+  # Permet de le lancer manuellement depuis l'onglet Actions
+  workflow_dispatch:
+  # Régénère aussi à chaque push sur la branche par défaut
+  push:
+    branches: [main, master]
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.classic.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: AlexDDevv
+          template: classic
+          base: header, activity, community, repositories
+          config_timezone: Europe/Paris
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          plugin_languages_threshold: 2%
