@@ -27,3 +27,13 @@ jobs:
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_threshold: 2%
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          extras_css: |
+            :root {
+              --color-title: #1C1B18 !important;
+              --color-text: #1C1B18 !important;
+              --color-icons: #1C1B18 !important;
+              --color-border: #d8d4c8 !important;
+            }
+            body, .card, .octicon { color: #1C1B18 !important; }
