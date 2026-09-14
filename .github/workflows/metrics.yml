@@ -16,6 +16,7 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Carte principale : profil, activité, repos, langages
       - uses: lowlighter/metrics@latest
         with:
           filename: metrics.classic.svg
@@ -27,8 +28,6 @@ jobs:
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_threshold: 2%
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
           extras_css: |
             :root {
               --color-title: #1C1B18 !important;
@@ -37,3 +36,14 @@ jobs:
               --color-border: #d8d4c8 !important;
             }
             body, .card, .octicon { color: #1C1B18 !important; }
+
+      # Calendrier isométrique de contributions, en fichier séparé
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.isocalendar.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: AlexDDevv
+          template: classic
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
